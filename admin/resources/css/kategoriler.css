@@ -1,0 +1,62 @@
+ul, li {
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+.kategori ul  li {
+	padding:5px;
+}
+
+.kategori {
+font-size: 12px;
+}
+.kategori ul li {
+list-style-type: none;
+padding-left: 14px;
+clear: both;
+}
+.kategori ul li .admin {
+background: url("../images/icon/solok.png") no-repeat scroll 4px center transparent;
+border-bottom: 1px solid #F4F4F4;
+color: #333333;
+display: block;
+padding: 2px 0 2px 14px;
+text-decoration: none;
+margin-right: 10px;
+float: left;
+width: 225px;
+}
+a.edit {
+background-image: url(../images/icon/edit-icon.png);
+margin-right: 10px;
+margin-top: 3px;
+}
+a.new {
+background-image: url(../images/icon/new-icon.png);
+margin-right: 10px;
+padding-left: 10px;
+margin-top: 3px;
+}
+
+a.ico {
+color: #000;
+font-size: 11px;
+text-decoration: none;
+padding: 0 0 0 14px;
+background-repeat: no-repeat;
+background-position: 0 0;
+}
+a.del {
+background-image: url(../images/icon/remove-icon.png);
+}
+.kategori li .admin:hover {
+background:url("../images/icon/solok2.png") no-repeat scroll 4px;
+color:#F8771A;
+
+
+}
+
+.kategori ul li.active a {
+background: url("../images/icon/solok2.png") no-repeat scroll 4px ;
+color:#F8771A;
+}

@@ -1,0 +1,1 @@
+<div class="footer">Tüm Hakları Saklıdır.<span>karakusadem</span></div></body>
