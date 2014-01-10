@@ -1,51 +1,52 @@
 <?php include_once "../config.php"; ?>
-<div id="kategoriekle"><a href="">Yeni Admin</a></div>
 <?php
 error_reporting(1);
-$id= $_POST['id'];
+foreach ($_POST['id'] as $id){
     if(isset($_POST['uye_onayla'])){
-    if(empty($id) || $id == 0){
+    if(empty($id) || $id == 1){
         echo '<div class="uyarilar">
              <div class="uyar error"><img src="resources/css/images/icon/errors.png"><span>İşlem yapabilmek için lütfen seçim yapınız..</span></div></div>';
-             header('Refresh: 3; url=index.php?islem=adminyonetimi');
+             header('Refresh: 3; url=index.php?islem=admin_yonetimi');
 
 }else{
     $tamamlanan ="UPDATE kullanici SET status=1 WHERE id=$id ";
     $tamamlanan=$DB->get_row($tamamlanan);
-    if($tamamlanan == 1){
+    if($tamamlanan == 0){
 	echo '<div class="uyarilar"><div class="uyar basarili"><img src="resources/css/images/icon/basarili.png"><span>Seçilen Adminler onaylandı..</span></div></div>';
-	header('Refresh: 2; url=index.php?islem=adminyonetimi');
+	header('Refresh: 2; url=index.php?islem=admin_yonetimi');
 
 }
 }
 }
+
 if(isset($_POST['uye_onaykaldir'])){
 if(empty($id) || $id == 0){
 }else{
     $devameden = "UPDATE kullanici SET status=2 WHERE id=$id ";
     $devameden=$DB->get_row($devameden);
-    if($devameden == 1){
+    if($devameden == 0){
 	echo '<div class="uyarilar"><div class="uyar basarili"><img src="resources/css/images/icon/basarili.png"><span>Seçilen Adminlerin onayı kaldırıldı..</span></div></div>';
-	header('Refresh: 2; url=index.php?islem=adminyonetimi');
+	header('Refresh: 2; url=index.php?islem=admin_yonetimi');
 
 }
 }
 }
 if(isset($_POST['uye_sil'])){
-if(empty($id) || $id ==0){
+if(empty($id) || $id == 0){
 }else{
     $delete ="DELETE FROM kullanici WHERE id=$id";
     $delete=$DB->query($delete);
     if($delete == 1){
         echo '<div class="uyarilar"><div class="uyar basarili"><img src="resources/css/images/icon/basarili.png"><span>Seçilen Adminler silinmistir..</span></div></div>';
-                    header('Refresh: 2; url=index.php?islem=adminyonetimi');
+                    header('Refresh: 2; url=index.php?islem=admin_yonetimi');
 
+}
 }
 }
 }
 ?>
 <br>
-<h3 class="anabaslik">Admin</h3>
+<h3 class="anabaslik">Adminler</h3>
 <form action="" method="post">
 <div class="tablo" style="width:100%">
 
@@ -72,12 +73,12 @@ foreach ($kullanici as $kayitlar){
 <li class="no"><?php echo $kayitlar->id; ?></li>
 <li class="durum">
     <?php if(($kayitlar->status) == 1){ ?><img class="durums" width="16" src="resources/css/images/icon/active.png"><?php } ?>
-    <?php if(($kayitlar->status) == 2){ ?><img class="durums" width="16" src="resources/css/images/icon/bekleme.png"><?php  }?>
+    <?php if(($kayitlar->status) == 2){ ?><img class="durums" width="16" src="resources/css/images/icon/bekleme.png"><?php } ?>
 </li>
 <li class="baslikHizmet"><?php echo $kayitlar->email; ?></li>
 
 <li class="islem">
-</li><li class="edit"><a href="index.php?islem=adminduzenle&id=<?php echo $kayitlar->id;?>" class="button icon edit">Düzenle</a></li>
+</li><li class="edit"><a href="index.php?islem=admin_guncelle&id=<?php echo $kayitlar->id;?>" class="button icon edit">Güncelle</a></li>
 
 <div class="temizle"></div>
 </div>

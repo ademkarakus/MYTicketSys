@@ -94,6 +94,10 @@ table{
 	margin: 15px 0px 0px;
 	float: right;
 }
+.search .text{
+	width: 233px;
+	margin-left: 50px;
+}
 
 .not-ie input, .not-ie textarea, .not-ie select {
 -webkit-appearance: none;

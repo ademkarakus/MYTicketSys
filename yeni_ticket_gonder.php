@@ -2,16 +2,19 @@
 session_start();
 include_once 'config.php';
 include_once 'lib/Kullanici.php';
-    $ad=$_POST['ad'];
-    $soyad=$_POST['soyad'];
-    $id_kategori=$_POST['id_kategori'];
-    $baslik=$_POST['baslik'];
-    $email=$_POST['email']; 
+include_once 'kontroller.php';
+$knt=new kontroller();
+
+    $ad=$knt->kontrol($_POST['ad']);
+    $soyad=$knt->kontrol($_POST['soyad']);
+    $id_kategori=$knt->kontrol($_POST['id_kategori']);
+    $baslik=$knt->kontrol($_POST['baslik']);
+    $email=$knt->kontrol($_POST['email']); 
     $girilen_kod = trim(strip_tags($_POST['security']));
     $guvenlik_kodu = trim(strip_tags($_SESSION['koruma']));       
     
     //php nin ürettgi kod
-    $soru=$_POST['soru'];
+    $soru=$knt->kontrol($_POST['soru']);
     $tarih=date('Y-m-d H:i:s');
     $ip=$_SERVER['REMOTE_ADDR']; //ip bilgisini öğrenmeye yarar
     
@@ -44,15 +47,9 @@ include_once 'lib/Kullanici.php';
     if(strlen($soru)>1000){
     $hatamesaj[]="Soru 1000 karakterden büyük olamaz";
     }
-    //dosya türü kontrolü örneği için bkz. http://www.w3schools.com/php/php_file_upload.asp
-    if( empty( $_FILES['dosya']['name'] )){
-        $hatamesaj[] = 'Dosya Seçiniz.';
-    }
-
     if($girilen_kod != $guvenlik_kodu){
         $hatamesaj[] = 'Güvenlik Kodu Yanlış';
     }
-
 
 ?>
 <!DOCTYPE html>
@@ -76,16 +73,16 @@ include_once 'lib/Kullanici.php';
                 <div class="form">
                 <section id="respond">
                     <?php
+                        $formatlar=array("image/.png", "image/jpeg", "image/gif");
+                            if(in_array($_FILES['dosya']['type'], $formatlar)){
+                                move_uploaded_file($_FILES['dosya']['tmp_name'], 'dosya/' . $_FILES['dosya']['name'] );
+                                 $dosya=$_FILES['dosya']['name'];
+                            }
                         if(count($hatamesaj)>0){
                             foreach($hatamesaj as $hata){
                                 echo $hata.'<br/>';
                             }
                         }else{
-                            $formatlar=array("image/.png", "image/jpeg", "image/gif");
-                            if(in_array($_FILES['dosya']['type'], $formatlar)){
-                                 move_uploaded_file($_FILES['dosya']['tmp_name'], 'dosya/' . $_FILES['dosya']['name'] );
-                                 $dosya=$_FILES['dosya']['name'];
-                            }
                             $kullanici= new Kullanici();
                                 $data= array(
                                     'ad'=>$ad,
@@ -101,7 +98,7 @@ include_once 'lib/Kullanici.php';
                                 $kayitSonucu= $kullanici->kayitYap($data);
                         if($kayitSonucu == true){
                             echo 'Mesajınız Gönderildi En Kısa Zamanda Bilgi Verilecektir';
-                            header("Refresh: 3; url=yeni_ticket.php");
+                            header("Refresh: 3; url=index.php");
                         }else{
                             echo "hata var";
                             echo $DB->last_error;

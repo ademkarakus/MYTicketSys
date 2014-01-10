@@ -3,11 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-	<meta name="description" content=""/>
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
-	<link rel="stylesheet" type="text/css" href="resources/css/style.css" media="screen" />
 	<title>My Ticket System/Yeni Ticket Oluştur</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="resources/css/jquery.autocomplete.css">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery.autocomplete.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#act").autocomplete('search.php?output=json', {
+                remoteDataType: 'json',
+                maxItemsToShow: 10,
+                autoFill: true,
+                onItemSelect: function(item) {
+                    document.location.href=''+item.value;
+                }
+            });
+        });
+    </script>       
 </head>
 <body>
 <div id="site-wrapper">
@@ -24,7 +37,6 @@
             <table border="1" style="width: 650px">
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>AD-SOYAD</th>
                         <th>EMAİL</th>
                         <th>KATEGORİ</th>
@@ -34,10 +46,10 @@
 <?php
 $sql="SELECT ud.id_kullanici, ud.ad, ud.soyad, ud.email, k.kategori_ad, s.baslik "
         . "FROM uye_detay ud "
-        . "INNER JOIN soru s "
+        . "LEFT JOIN soru s "
         . "ON s.id_kullanici = ud.id_kullanici "
-        . "INNER JOIN kategori k "
-        . "ON k.id_kategori = ud.id_kullanici";
+        . "LEFT JOIN kategori k "
+        . "ON k.id_kategori = ud.id_kategori";
 
 $sonuclar=$DB->get_results($sql);
 //$a=0;
@@ -46,7 +58,6 @@ if(count($sonuclar) == 0){
 }else{
     foreach ($sonuclar as $kayitlar){
         echo '<tr>
-         <td>'.$kayitlar->id_kullanici.'</td>
          <td>'.$kayitlar->ad.' '.$kayitlar->soyad.'</td>
          <td>'.$kayitlar->email.'</td>    
          <td>'.$kayitlar->kategori_ad.'</td>

@@ -1,4 +1,7 @@
-<?php include_once "../config.php"; 
+<?php include_once "../config.php";
+include_once "../kontroller.php";
+$knt=new kontroller();
+
 $link ="index.php?islem=cevap_duzenle&id=$id";
 $islem=$_GET['islem'];
 $id =$_GET['id'];
@@ -10,8 +13,8 @@ if($islem =='cevap_duzenle'){
 }
 
 if($_POST){
-    $baslik=$_POST['baslik'];
-    $cevap=$_POST['cevap'];
+    $baslik=$knt->kontrol($_POST['baslik']);
+    $cevap=$knt->kontrol($_POST['cevap']);
     $dosya=$_POST['dosya'];
     $tarih=date('Y-m-d H:i:s');
     
