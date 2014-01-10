@@ -37,104 +37,64 @@
 	      		<h3 class="section-title">KONULAR VE YORUMLAR</h3>
 	      </div>
 	      <div class="comment-list-wrapper">
-	        <ul class="comment-list">
-                    
+	        <ul class="comment-list" style="padding-right: 5px;">
+                <li class="comment comment-parent" id="comment-47" style="padding-bottom: 15px;">    
 <!-- ******************-->                    
 <?php
-$soru_sql="SELECT ud.id_kullanici, ud.ad, ud.soyad, s.id_soru, s.soru, s.tarih, c.id_soru, c.cevap, c.tarih FROM soru s INNER JOIN cevap c ON s.id_soru = c.id_soru LEFT JOIN uye_detay ud ON ud.id_kullanici = s.id_soru ";
+$soru_sql="SELECT ud.id_kullanici, ud.ad, ud.soyad, s.baslik, s.soru, s.id_soru, s.tarih "
+        . "FROM uye_detay ud "
+        . "LEFT JOIN soru s "
+        . "ON ud.id_kullanici = s.id_kullanici "
+        . "ORDER BY ud.id_kullanici DESC LIMIT 10";
 $sonuclar=$DB->get_results($soru_sql);
 foreach ($sonuclar as $soru){
 ?>
-	          <li class="comment comment-parent" id="comment-47">
-	            <div class="comment-profile-wrapper left">
+	          
+	            <div class="comment-profile-wrapper left" style="padding-top: 15px;">
 	              <div class="comment-profile">
 	                <div class="comment-gravatar"><img src="resources/css/images/sample-gravatar.gif" height="50" width="50" alt="" /></div>
-	                <div class="comment-author"><?php echo $soru->ad.' '.$soru->soyad; ?></div>
+	                <div class="comment-author"><?php echo ucwords($soru->ad.' '.$soru->soyad); ?></div>
                   </div>
                 </div>
-	            <div class="comment-content-wrapper right">
+	            <div class="comment-content-wrapper right" style="padding-top: 15px;">
 	              <div class="comment-content-wrapper-2">
 	                <div class="comment-body">
 	                  <div class="comment-arrow"></div>
 	                  <div class="post-date">
-	                    <div class="left">26.12.2013 - 22:58 | Üye </div>
+	                    <div class="left"><?php echo $soru->tarih; ?> | Üye </div>
 	                    <div class="clearer">&nbsp;</div>
                       </div>
-	                  <div class="comment-text"> <?php echo $soru->soru; ?> <span><a href="">[Devamı..]</a></span></div>
+	                  <div class="comment-text" style="margin-bottom: 12px;"> <?php echo $soru->soru; ?></div>
 	                  <div class="clearer">&nbsp;</div>
                     </div>
                   </div>
                 </div>
 	            <div class="clearer">&nbsp;</div>
-<?php } ?>
-	            <ul class="children">
+ <?php 
+     $sql="SELECT * FROM cevap "
+        . "WHERE id_soru=$soru->id_soru";
+        $sonuc=$DB->get_results($sql);
+        foreach ($sonuc as $cevap){
+ ?>
+                    <div class="clearer">&nbsp;</div>
+                    <ul class="children" style="">
 	              <li class="comment" id="comment-49">
 	                <div class="comment-content">
 	                  <div class="comment-body">
 	                    <div class="post-date">
-	                      <div class="left"><img src="resources/css/images/sample-gravatar.gif" height="28" width="28" alt="" /> 26.12.2013 - 23:05 | Yönetici </div>
+	                      <div class="left"><img src="resources/css/images/sample-gravatar.gif" height="28" width="28" alt="" /> <?php echo $cevap->tarih; ?> | Yönetici </div>
 	                      <div class="clearer">&nbsp;</div>
                         </div>
-	                    <div class="comment-text"> qqqq<span><a href="">[Devamı..]</a></span></div>
+	                    <div class="comment-text"><?php echo $cevap->cevap; ?></div>
                       </div>
                     </div>
                   </li>
-                </ul>
-
-
-  
-                   <!--################--> 
+                 </ul>
+<?php } ?>
+<?php } ?>
               </li>
-<!--*********************-->
-
             </ul>
           </div>
-
-        <hr>
-
-<!--
-          	<div class="form">
-				<section id="respond">
-					<h3 class="section-title">Yarum Yap</h3>
-					<form method="post" action="" class="comments-form" />
-						<p class="input-block">
-							<label for="name">Adınız <span>(*)</span></label><br>
-							<input type="text" name="ad" id="name" />
-						</p>
-
-						<p class="input-block">
-							<label for="name">Soyadınız <span>(*)</span></label><br>
-							<input type="text" name="soyad" id="name" />
-						</p>
-
-						<p class="input-block">
-							<label for="email">E-mail <span>(*)</span></label><br>
-							<input type="text" name="email" id="email" />
-						</p>
-
-						<p class="input-block">
-							<label for="kategori">Kategori</label><br>
-							<select name="kategori">
-								<option>Seçiniz</option>
-								<option>Dilek</option>
-								<option>Şikayet</option>
-								<option>Teşekkür</option>
-							</select>
-						</p>
-
-						<p class="input-block">
-							<label for="comments">Mesaj: <span>(*)</span></label><br>
-							<textarea name="comments" id="comments"></textarea>	
-						</p>
-
-						<p class="input-block">
-							<button class="button orange" type="submit" id="submit">Gönder</button>
-						</p>
-						
-					</form>
-				</section>
-			</div>
--->
         </div>       
       </div>
 	  <div class="right sidebar" id="sidebar">

@@ -14,7 +14,7 @@ if($islem =='cevap_duzenle'){
 
 if($_POST){
     $baslik=$knt->kontrol($_POST['baslik']);
-    $cevap=$knt->kontrol($_POST['cevap']);
+    $cevap=strip_tags($_POST['cevap']);
     $dosya=$_POST['dosya'];
     $tarih=date('Y-m-d H:i:s');
     

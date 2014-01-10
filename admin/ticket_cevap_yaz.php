@@ -8,7 +8,7 @@ $id =$_GET['id'];
 $id=(int)$id;
 if($_POST){
     $baslik=$knt->kontrol($_POST['baslik']);
-    $soru=$knt->kontrol($_POST['soru']);
+    $soru=strip_tags($_POST['soru']);
     $dosya=$_POST['dosya'];
     $tarih=date('Y-m-d H:i:s');
     

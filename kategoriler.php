@@ -1,3 +1,7 @@
+<?php include_once 'kontroller.php'; 
+$metin=new kontroller();
+?>
+
 <div class="section">
     <div class="section-title">DİLEK VE İSTEK MESAJLARI</div>
 
@@ -18,11 +22,10 @@
                 foreach ($sonuclar as $kategori){
                     echo '
                     <li>
-                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$kategori->baslik.'</a></div>
+                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$metin->metin($kategori->baslik).'</a></div>
                             <div class="right"></div>
                             <div class="clearer">&nbsp;</div>
                     </li>';                
-
                 }
                 ?>
             </ul>
@@ -51,7 +54,7 @@
                 foreach ($sonuclar as $kategori){
                     echo '
                     <li>
-                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$kategori->baslik.'</a></div>
+                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$metin->metin($kategori->baslik).'</a></div>
                             <div class="right"></div>
                             <div class="clearer">&nbsp;</div>
                     </li>';                
@@ -81,7 +84,7 @@
                 foreach ($sonuclar as $kategori){
                     echo '
                     <li>
-                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$kategori->baslik.'</a></div>
+                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$metin->metin($kategori->baslik).'</a></div>
                             <div class="right"></div>
                             <div class="clearer">&nbsp;</div>
                     </li>';                

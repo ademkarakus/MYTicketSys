@@ -38,13 +38,13 @@
                 <thead>
                     <tr>
                         <th>AD-SOYAD</th>
-                        <th>EMAİL</th>
                         <th>KATEGORİ</th>
                         <th>BAŞLIK</th>
+                        <th>TARİH</th>
                     </tr>
                 </thead>
 <?php
-$sql="SELECT ud.id_kullanici, ud.ad, ud.soyad, ud.email, k.kategori_ad, s.baslik "
+$sql="SELECT ud.id_kullanici, ud.ad, ud.soyad, ud.email, k.kategori_ad, s.baslik, s.tarih "
         . "FROM uye_detay ud "
         . "LEFT JOIN soru s "
         . "ON s.id_kullanici = ud.id_kullanici "
@@ -58,10 +58,10 @@ if(count($sonuclar) == 0){
 }else{
     foreach ($sonuclar as $kayitlar){
         echo '<tr>
-         <td>'.$kayitlar->ad.' '.$kayitlar->soyad.'</td>
-         <td>'.$kayitlar->email.'</td>    
+         <td>'.ucwords($kayitlar->ad.' '.$kayitlar->soyad).'</td> 
          <td>'.$kayitlar->kategori_ad.'</td>
          <td>'.$kayitlar->baslik.'</td>
+         <td>'.$kayitlar->tarih.'</td>    
         
          </tr>';
     }

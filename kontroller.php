@@ -16,8 +16,15 @@ class kontroller {
         return $karakter;
 }
     public function sifrele($sifre){
-                $sifre=sha1(md5(trim($sifre)));
+                $sifre=sha1(trim($sifre));
                 return $sifre;
 	}
-
+   public function metin($metin){
+                if(strlen($metin)>36){
+                    $metin= substr($metin, 0,35).'...';
+                    return $metin;
+                }else{
+                    return $metin;
+                }
+   }
 }

@@ -60,7 +60,7 @@ $sql="SELECT ud.id_kullanici, ud.ad, ud.soyad, ud.email, k.kategori_ad, s.baslik
 $kayitlar=$DB->get_row($sql);
 }
         echo '<tr>
-         <td>'.$kayitlar->ad.' '.$kayitlar->soyad.'</td>
+         <td>'.ucwords($kayitlar->ad.' '.$kayitlar->soyad).'</td>
          <td>'.$kayitlar->kategori_ad.'</td>    
          <td>'.$kayitlar->baslik.'</td>
          <td>'.$kayitlar->soru.'</td>
