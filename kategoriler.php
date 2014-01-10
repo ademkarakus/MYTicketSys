@@ -18,7 +18,7 @@
                 foreach ($sonuclar as $kategori){
                     echo '
                     <li>
-                            <div class="left"><a href="#">'.$kategori->baslik.'</a></div>
+                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$kategori->baslik.'</a></div>
                             <div class="right"></div>
                             <div class="clearer">&nbsp;</div>
                     </li>';                
@@ -51,7 +51,7 @@
                 foreach ($sonuclar as $kategori){
                     echo '
                     <li>
-                            <div class="left"><a href="#">'.$kategori->baslik.'</a></div>
+                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$kategori->baslik.'</a></div>
                             <div class="right"></div>
                             <div class="clearer">&nbsp;</div>
                     </li>';                
@@ -81,7 +81,7 @@
                 foreach ($sonuclar as $kategori){
                     echo '
                     <li>
-                            <div class="left"><a href="#">'.$kategori->baslik.'</a></div>
+                            <div class="left"><a href="detay.php?islem=detay&id='.$kategori->id_kullanici.'">'.$kategori->baslik.'</a></div>
                             <div class="right"></div>
                             <div class="clearer">&nbsp;</div>
                     </li>';                

@@ -6,8 +6,8 @@ $results = array();
 
 if (isset($_GET['q'])) {
     $q = mysql_real_escape_string($_GET['q']);
-	$kılavuz=str_replace(" ","%",$q);
-        $sql="SELECT * FROM soru WHERE baslik LIKE '%$kılavuz%' ORDER BY id_soru DESC LIMIT 0,10";
+	$kilavuz=str_replace(" ","%",$q);
+        $sql="SELECT * FROM soru WHERE baslik LIKE '%$kilavuz%' ORDER BY id_soru DESC LIMIT 0,10";
         $sonuc=$DB->get_results($sql);
         foreach ($sonuc as $kelime){
             $id=$kelime->id_soru;
