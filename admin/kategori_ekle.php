@@ -23,10 +23,10 @@ if($_POST){
     $ekle=$DB->query($sql);
     if($ekle == true){
             echo '<div class="uyarilar"><div class="uyar basarili"><img src="resources/css/images/icon/basarili.png"><span>Başari Ile Güncellendi</span></div></div>';
-            header('Refresh: 2; url=index.php?islem=kategori_ekle');
+            header('Refresh: 3; url=index.php?islem=kategori_ekle');
         }else{
             echo '<div class="uyarilar"><div class="uyar error"><img src="resources/css/images/icon/errors.png"><span>Güncellenemedi problem oluştu.</span></div></div>';
-            header('Refresh: 32; url=index.php?islem=kategori_ekle');
+            header('Refresh: 3; url=index.php?islem=kategori_ekle');
             echo $DB->last_error;
             exit;
 }

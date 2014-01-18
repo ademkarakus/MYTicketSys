@@ -83,6 +83,7 @@ $knt=new kontroller();
                                 echo $hata.'<br/>';
                             }
                         }else{
+                            $sifrele= sha1(rand(10, 1000));
                             $kullanici= new Kullanici();
                                 $data= array(
                                     'ad'=>$ad,
@@ -90,6 +91,7 @@ $knt=new kontroller();
                                     'id_kategori'=>$id_kategori,
                                     'baslik'=>$baslik,
                                     'email'=>$email,
+                                    'sifrele'=>$sifrele,
                                     'soru'=>$soru,
                                     'tarih'=>$tarih,
                                     'dosya'=>$dosya,

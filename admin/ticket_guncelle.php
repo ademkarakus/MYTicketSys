@@ -34,10 +34,10 @@ if($_POST){
     
     if($guncelle3 == 0){
             echo '<div class="uyarilar"><div class="uyar basarili"><img src="resources/css/images/icon/basarili.png"><span>Başari Ile Güncellendi</span></div></div>';
-            header('Refresh: 2; url='.$link.'');
+            header('Refresh: 3; url='.$link.'');
         }else{
             echo '<div class="uyarilar"><div class="uyar error"><img src="resources/css/images/icon/errors.png"><span>Güncellenemedi problem oluştu.</span></div></div>';
-            header('Refresh: 32; url='.$link.'');
+            header('Refresh: 3; url='.$link.'');
             echo $DB->last_error;
             exit;
 }

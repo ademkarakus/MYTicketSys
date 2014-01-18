@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 11 Oca 2014, 01:15:14
+-- Üretim Zamanı: 18 Oca 2014, 12:37:20
 -- Sunucu sürümü: 5.5.32
 -- PHP Sürümü: 5.4.19
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `cevap` (
   `dosya` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_cevap`),
   KEY `id_soru` (`id_soru`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=7 ;
 
 --
 -- Tablo döküm verisi `cevap`
@@ -45,8 +45,9 @@ INSERT INTO `cevap` (`id_cevap`, `id_soru`, `baslik`, `cevap`, `tarih`, `dosya`)
 (1, 4, 'deneme cevap', 'bu bir deneme mesajı cevabıdır', '2014-01-11 02:00:00', NULL),
 (2, 2, 'cevap iki', 'ikinci sorunun birinci cevabı', '2014-01-11 01:00:00', NULL),
 (3, 2, 'cevap iki', 'ikinci sorunun ikinci cevabı ', '2014-01-11 04:00:00', NULL),
-(4, 7, 'gereğini yapacağız', 'istek ve sorularınıza en kısa zaman cözüm bulunacaktır', '2014-01-11 01:04:17', ''),
-(5, 7, 'istek mesajı', 'deneme tekrarı&nbsp;deneme tekrarıdeneme tekrarı&nbsp;deneme tekrarı&nbsp;deneme tekrarı\r\n', '2014-01-11 01:09:06', '');
+(4, 7, 'gereğini yapacağız', 'istek ve sorularınıza en kısa zaman c&ouml;z&uuml;m bulunacaktır\r\n', '2014-01-11 01:04:17', ''),
+(5, 7, 'istek mesajı', 'deneme tekrarı&nbsp;deneme tekrarıdeneme tekrarı&nbsp;deneme tekrarı&nbsp;deneme tekrarı\r\n', '2014-01-11 01:09:06', ''),
+(6, 7, 'deneme cevap', 'bu bir deneme mesajıdır\r\n', '2014-01-12 23:57:19', '');
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `kullanici` (
   `password` varchar(40) NOT NULL,
   `status` int(1) NOT NULL COMMENT '1-aktif, 2-pasif',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=3 ;
 
 --
 -- Tablo döküm verisi `kullanici`
@@ -118,8 +119,8 @@ INSERT INTO `soru` (`id_soru`, `id_kullanici`, `baslik`, `soru`, `tarih`, `dosya
 (3, 3, 'her şey güzel olmuş', 'her şey güzel olmuş her şey güzel olmuş her şey güzel olmuş her şey güzel olmuş her şey güzel olmuş', '2014-01-11 00:25:41', ''),
 (4, 4, 'Bir kaç özellik daha eklemesin ir kaç özellik daha eklemesin', 'proje bire kaç özellik daha eklemesılişd proje bire kaç özellik daha eklemesılişd proje bire kaç özellik daha eklemesılişd proje bire kaç özellik daha eklemesılişd proje bire kaç özellik daha eklemesılişd proje bire kaç özellik daha eklemesılişd', '2014-01-11 00:27:16', ''),
 (5, 5, 'şikayetlerim', 'şikayetlerim var, şikayetlerim var, şikayetlerim var, şikayetlerim var, şikayetlerim var,', '2014-01-11 00:57:16', 'abandoned_to_live-wallpaper-1366x768.jpg'),
-(6, 6, 'teşekkürlerimi iletiyorum saygılarımla', 'herşeyiçin çok teşekkür ederin herşeyiçin çok teşekkür ederin herşeyiçin çok teşekkür ederin herşeyiçin çok teşekkür ederin', '2014-01-11 01:00:11', ''),
-(7, 7, 'istek ve dilek mesajı', 'istek ve deneme mesajları özelikleri artırın, istek ve deneme mesajları özelikleri artırın istek ve deneme mesajları özelikleri artırın istek ve deneme mesajları özelikleri artırınistek ve deneme mesajları özelikleri artırın istek ve deneme mesajları özelikleri artırın istek ve deneme mesajları özelikleri artırın', '2014-01-11 01:02:25', '');
+(6, 6, 'teşekkürlerimi iletiyorum saygılarımla', '<p>herşeyi&ccedil;in &ccedil;ok teşekk&uuml;r ederin herşeyi&ccedil;in &ccedil;ok teşekk&uuml;r ederin herşeyi&ccedil;in &ccedil;ok teşekk&uuml;r ederin herşeyi&ccedil;in &ccedil;ok teşekk&uuml;r ederin</p>\r\n', '2014-01-11 01:00:11', ''),
+(7, 7, 'istek ve dilek mesajı', '<p>istek ve deneme mesajları &ouml;zelikleri artırın, istek ve deneme mesajları &ouml;zelikleri artırın istek ve deneme mesajları &ouml;zelikleri artırın istek ve deneme mesajları &ouml;zelikleri artırınistek ve deneme mesajları &ouml;zelikleri artırın istek ve deneme mesajları &ouml;zelikleri artırın istek ve deneme mesajları &ouml;zelikleri artırın</p>\r\n', '2014-01-11 01:02:25', '');
 
 -- --------------------------------------------------------
 
@@ -133,8 +134,9 @@ CREATE TABLE IF NOT EXISTS `uye_detay` (
   `ad` varchar(25) NOT NULL,
   `soyad` varchar(25) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `sifreleme` varchar(40) NOT NULL,
   `ip` varchar(30) NOT NULL,
-  `status` int(1) NOT NULL COMMENT '0-pasif, 1-soru, 2-cevap',
+  `status` int(1) NOT NULL COMMENT '0-pasif, 1-soru, 2-cevaplanan',
   PRIMARY KEY (`id_kullanici`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=8 ;
 
@@ -142,14 +144,14 @@ CREATE TABLE IF NOT EXISTS `uye_detay` (
 -- Tablo döküm verisi `uye_detay`
 --
 
-INSERT INTO `uye_detay` (`id_kullanici`, `id_kategori`, `ad`, `soyad`, `email`, `ip`, `status`) VALUES
-(1, 1, 'mehmet', 'kara', 'mehmet.kara@gmail.com', '::1', 1),
-(2, 2, 'abdullah', 'demir', 'abdullah@gmail.com', '::1', 1),
-(3, 3, 'kerim', 'öztürk', 'kerim@hotmail.com', '::1', 1),
-(4, 1, 'dursun', 'satıcı', 'dursun@hotmail.com', '::1', 1),
-(5, 2, 'Hakan', 'kahya', 'kahya@hotmail.com', '::1', 1),
-(6, 3, 'mustafa', 'keşap', 'mustafa@gmail.com', '::1', 1),
-(7, 1, 'emirhan', 'karakus', 'emirhan@hotmail.com', '::1', 1);
+INSERT INTO `uye_detay` (`id_kullanici`, `id_kategori`, `ad`, `soyad`, `email`, `sifreleme`, `ip`, `status`) VALUES
+(1, 1, 'mehmet', 'kara', 'karakus.adm@gmail.com', '31bd9b9f5f7b338e41b56183a2f3008b541d7c84', '::1', 1),
+(2, 2, 'abdullah', 'demir', 'karakus.adm@gmail.com', 'da5e0596682ba273067955b008fa4acc159bce0e', '::1', 2),
+(3, 3, 'kerim', 'öztürk', 'karakus.adm@gmail.com', '25250e46745c8169531da0086e6bbc3369795330', '::1', 1),
+(4, 1, 'dursun', 'satıcı', 'karakus.adm@gmail.com', 'fc7a734dba518f032608dfeb04f4eeb79f025aa7', '::1', 1),
+(5, 2, 'Hakan', 'kahya', 'karakus.adm@gmail.com', 'f1abd670358e036c31296e66b3b66c382ac00812', '::1', 1),
+(6, 3, 'mustafaa', 'keşap', 'karakus.adm@gmail.com', '14019988a92023b21c8fbafb2b615c6ce575da38', '::1', 2),
+(7, 1, 'emirhann', 'karakus', 'karakus.adm@gmail.com', '356a192b7913b04c54574d18c28d46e6395428ab', '::1', 1);
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar

@@ -3,7 +3,7 @@ include_once "../kontroller.php";
 include_once "../lib/Kullanici.php";
 $knt=new kontroller();
 
-$link ="index.php?islem=ticket_cevapla";
+$link ="index.php?islem=tekrar_yanitla";
 $islem=$_GET['islem'];
 $id =$_GET['id'];
 $id=(int)$id;
@@ -27,11 +27,6 @@ if($_POST){
     $sql="INSERT INTO cevap (id_soru, baslik, cevap, tarih, dosya ) "
         . "VALUES ($id, '$baslik', '$soru', '$tarih', '$dosya')";
     $cevapla=$DB->query($sql);
-            $sql2="UPDATE uye_detay "
-            . "SET status=2 "
-            . "WHERE id_kullanici=$id ";
-             $guncelle=$DB->get_row($sql2);    
-
     if($cevapla == TRUE){
             $aktivasyon=new Kullanici();
             //$sql_mail="SELECT ud.id_kullanici, ud.ad, ud.soyad, ud.email, ud.sifreleme, c.baslik, c.cevap FROM uye_detay ud LEFT JOIN cevap c ON ud.id_kullanici = c.id_cevap WHERE ud.id_kullanici = $id ";

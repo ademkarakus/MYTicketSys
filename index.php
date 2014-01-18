@@ -14,6 +14,7 @@ include_once "config.php";
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery.autocomplete.js"></script>
     <script type="text/javascript">
+        alert("Yönetici Admin panelinden soruyu cevapladığı zaman soruyu soran kişiye mail gidebilmesi için lib/kullanici.php klasöründeki aktivasyonGonder fonksiyonundaki username ve password kısımları girilmesi gerekli");
         $(function() {
             $("#act").autocomplete('search.php?output=json', {
                 remoteDataType: 'json',

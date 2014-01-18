@@ -8,8 +8,8 @@ class Kullanici {
         global $DB;
         extract($array);
         
-        $sql="INSERT INTO uye_detay(id_kategori, ad, soyad, email, ip, status ) "
-                . "VALUES($id_kategori, '$ad', '$soyad', '$email', '$ip', 1 )";
+        $sql="INSERT INTO uye_detay(id_kategori, ad, soyad, email, sifreleme, ip, status ) "
+                . "VALUES($id_kategori, '$ad', '$soyad', '$email', '$sifrele', '$ip', 1 )";
 
 
         $sonuc = $DB->query( $sql);
@@ -24,34 +24,32 @@ class Kullanici {
         }else{
             return false;
         }
-    }/*
-    private function aktivasyonGonder() {
-        
-        
+    }
+    public function aktivasyonGonder($email, $soru) {
         date_default_timezone_set('Etc/UTC');
-        require 'lib/PHPMailer/PHPMailerAutoload.php';
+        require 'PHPMailer/class.phpmailer.php';
         $mail = new PHPMailer();
         $mail->setLanguage('tr');
-        $mail->isSMTP();
-        $mail->SMTPDebug = 2;
+        $mail->IsSMTP();
+        //$mail->SMTPDebug = 2;
         $mail->Debugoutput = 'html';
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "mail@karakusadem.com";
-        $mail->Password = "257648";
-        $mail->setFrom('karakus.adm@gmail.com', 'Web Sitesinden');
-        $mail->addReplyTo('mail@karakusadem.com', 'Adem Karakuş');
-        $mail->addAddress('adem__karakus@hotmail.com', 'Adem Karakuş');
-        $mail->Subject = 'Web sitenizden bir mesaj var' . date('d.m.Y H:i:s');
-        $mail->msgHTML($_POST['mesaj']);
-        $mail->AltBody = $_POST['mesaj'];
+        $mail->Username = ""; //SMTP kullanıcı adı  
+        $mail->Password = ""; //SMTP şifre 
+        $mail->setFrom('My Ticket Sysytem', 'Web Sitesinden'); //Gönderen kısmında yer alacak e-mail adresi  
+        $mail->addReplyTo('mail@karakusadem.com', 'Adem Karakus');
+        $mail->addAddress("$email"); // Mail gönderilecek adresleri ekliyoruz.  
+        $mail->Subject = 'MY Ticket Sys Web sitenizden bir mesaj var ' . date('d.m.Y H:i:s');
+        $mail->msgHTML ("Cevap yanıtınızı Bu Linkten Kontrol Edebilirsiniz<br>$soru");
+        $mail->AltBody = $soru;
         
         if (!$mail->send()) {
-            echo "Mail gönderiminde hata oluştu: " . $mail->ErrorInfo;
+            return false;
         } else {
-            echo "Mesaj başarıyla gönderildi!";
+            return true;
         }
-    }*/
+    }
 }

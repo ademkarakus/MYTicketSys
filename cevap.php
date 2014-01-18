@@ -1,4 +1,9 @@
-<?php require_once 'config.php'; ?>
+<?php
+require_once 'config.php';
+$islem=$_GET['islem'];
+$id=$_GET['id'];
+$id=(int)$id;
+?>
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
@@ -40,12 +45,15 @@
                 <li class="comment comment-parent" id="comment-47" style="padding-bottom: 15px;">    
 <!-- ******************-->                    
 <?php
-$soru_sql="SELECT ud.id_kullanici, ud.ad, ud.soyad, s.baslik, s.soru, s.id_soru, s.tarih "
+$soru_sql="SELECT ud.id_kullanici, ud.ad, ud.soyad, ud.sifreleme, s.baslik, s.soru, s.id_soru, s.tarih "
         . "FROM uye_detay ud "
         . "LEFT JOIN soru s "
         . "ON ud.id_kullanici = s.id_kullanici "
-        . "ORDER BY ud.id_kullanici DESC LIMIT 10";
+        . "WHERE ud.sifreleme='$islem' &&  ud.id_kullanici=$id";
 $sonuclar=$DB->get_results($soru_sql);
+if($sonuclar == NULL){
+    echo '<center style="padding-top:10px; color:red; font-weight:bold;">Aradığınız İçerik Yok</center>';
+}else{
 foreach ($sonuclar as $soru){
 ?>
 	          
@@ -90,6 +98,7 @@ foreach ($sonuclar as $soru){
                   </li>
                  </ul>
 <?php } ?>
+<?php } ?>                    
 <?php } ?>
               </li>
             </ul>

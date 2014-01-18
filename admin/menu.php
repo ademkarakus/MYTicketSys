@@ -34,8 +34,7 @@ Merhaba, <b>Yonetici</b></br>
 		<li class="iconyazi">Ticket Cevapla</li></div></a>
 	</div>
 	<div class="sirala">
-		<a href="index.php?islem=......"><div class="nav" style="margin-left:-8px;">
-			<img src="resources/css/images/icon/dosyalar1.png" width="48" height="48">
-		<li class="iconyazi">Yanıt Bekleyenler</li></div></a>
+		<a href="index.php?islem=tekrar_yanitla"><div class="nav"><img src="resources/css/images/icon/dosyalar.png" width="48" height="48">
+		<li class="iconyazi">Tekrar Yanıtla</li></div></a>
 	</div>
 </div>

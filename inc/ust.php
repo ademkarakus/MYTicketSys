@@ -6,7 +6,6 @@
     <ul class="tabbed">
         <li class="tabbed"><a href="index.php" class="tabbed">Yeni Ticket</a></li>
         <li><a href="eski_ticketlar.php">Eski Ticketlar</a></li>
-        <li><a href="mesajlar.php">Mesajlar</a></li>
     </ul>
     <div class="clearer">&nbsp;</div>
 </div>

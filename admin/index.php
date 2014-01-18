@@ -22,7 +22,7 @@ include_once 'menu.php';
 ?>
 <div class="yanyana" style="width:1120px;">
 	<?php
-        $sayfalar=array("", "admin_guncelle", "admin_yonetimi", "admin_ekle", "kategori_duzenle", "kategori_guncelle", "kategori_ekle", "ticket_duzenle", "ticket_guncelle", "ticket_cevapla", "ticket_cevapla", "ticket_cevap_yaz", "cevap_duzenle",   "cevap_yaz", "cevaplananlar", "cikis" );  
+        $sayfalar=array("", "admin_guncelle", "admin_yonetimi", "admin_ekle", "kategori_duzenle", "kategori_guncelle", "kategori_ekle", "ticket_duzenle", "ticket_guncelle", "ticket_cevapla", "ticket_cevapla", "ticket_cevap_yaz", "tekrar_yanitla", "tekrar_yanit_yaz", "cevap_duzenle",   "cevap_yaz", "cevaplananlar", "cikis" );  
         $islem = $_GET['islem'];
         if (in_array($islem, $sayfalar)){
             if(file_exists("{$islem}.php"))

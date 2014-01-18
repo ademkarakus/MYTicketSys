@@ -39,6 +39,7 @@ if($_POST){
             header('Refresh: 3; url=index.php?islem=admin_yonetimi');
           }else{
             echo '<div class="uyarilar"><div class="uyar error"><img src="resources/css/images/icon/errors.png"><span>Admin güncellenemedi lütfen tekrar deneyin</span></div></div>';
+            header('Refresh: 3; url=index.php?islem=admin_yonetimi');
           }
       }
   }
@@ -57,6 +58,5 @@ if($_POST){
         <option value="2" >Onaylı Değil</option>
 </select>
 </div>
-
 <input type="submit" class="button" value="Kaydet" /> 
 </form>

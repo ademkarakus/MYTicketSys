@@ -3,7 +3,7 @@
 error_reporting(1);
 foreach ($_POST['id'] as $id){
     if(isset($_POST['uye_onayla'])){
-    if(empty($id) || $id == 1){
+    if(empty($id) || $id == 0){
         echo '<div class="uyarilar">
              <div class="uyar error"><img src="resources/css/images/icon/errors.png"><span>İşlem yapabilmek için lütfen seçim yapınız..</span></div></div>';
              header('Refresh: 3; url=index.php?islem=admin_yonetimi');
@@ -13,7 +13,7 @@ foreach ($_POST['id'] as $id){
     $tamamlanan=$DB->get_row($tamamlanan);
     if($tamamlanan == 0){
 	echo '<div class="uyarilar"><div class="uyar basarili"><img src="resources/css/images/icon/basarili.png"><span>Seçilen Adminler onaylandı..</span></div></div>';
-	header('Refresh: 2; url=index.php?islem=admin_yonetimi');
+	header('Refresh: 3; url=index.php?islem=admin_yonetimi');
 
 }
 }
@@ -26,7 +26,7 @@ if(empty($id) || $id == 0){
     $devameden=$DB->get_row($devameden);
     if($devameden == 0){
 	echo '<div class="uyarilar"><div class="uyar basarili"><img src="resources/css/images/icon/basarili.png"><span>Seçilen Adminlerin onayı kaldırıldı..</span></div></div>';
-	header('Refresh: 2; url=index.php?islem=admin_yonetimi');
+	header('Refresh: 3; url=index.php?islem=admin_yonetimi');
 
 }
 }
@@ -38,7 +38,7 @@ if(empty($id) || $id == 0){
     $delete=$DB->query($delete);
     if($delete == 1){
         echo '<div class="uyarilar"><div class="uyar basarili"><img src="resources/css/images/icon/basarili.png"><span>Seçilen Adminler silinmistir..</span></div></div>';
-                    header('Refresh: 2; url=index.php?islem=admin_yonetimi');
+                    header('Refresh: 3; url=index.php?islem=admin_yonetimi');
 
 }
 }
